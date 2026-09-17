@@ -52,7 +52,14 @@
     box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
 }
 
-.form-group select {
+/* 网卡选择下拉框 —— 专用选择器（#networkInterface），
+   刻意不写成通用的 ".form-group select"：那样会连带匹配到
+   语言选择框（.language-select，同样位于 .form-group 内），
+   由于类型选择器 + 类选择器的优先级（0,1,1）高于单一类选择器
+   .language-select（0,1,0），会悄悄覆盖语言下拉框原本正常的
+   样式，导致"跟随浏览器"文字显示不全。两者样式互不相关，
+   因此彻底解耦，避免以后再次互相影响。 */
+#networkInterface {
     padding: 8px 12px;
     border: 2px solid var(--color-border);
     border-radius: var(--radius-lg);
@@ -65,20 +72,21 @@
        padding 也算进去，一旦 padding 偏大就会把文字上下裁掉一截。 */
     min-height: 44px;
     cursor: pointer;
+    width: 100%;
     max-width: 100%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-.form-group select:focus {
+#networkInterface:focus {
     outline: none;
     border-color: var(--color-primary);
     background: white;
     box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
 }
 
-.form-group select:disabled {
+#networkInterface:disabled {
     background: var(--color-bg-disabled);
     color: var(--color-text-muted);
     cursor: not-allowed;
