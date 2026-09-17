@@ -53,17 +53,21 @@
 }
 
 .form-group select {
-    padding: var(--spacing-xl) var(--spacing-xl);
+    padding: 8px 12px;
     border: 2px solid var(--color-border);
     border-radius: var(--radius-lg);
     font-size: 14px;
+    line-height: 1.4;
     transition: all 0.3s ease;
     background: var(--color-bg-light);
     color: var(--color-text);
-    height: 44px;
+    /* 用 min-height 而非 height：box-sizing: border-box 下固定 height 会把
+       padding 也算进去，一旦 padding 偏大就会把文字上下裁掉一截。 */
+    min-height: 44px;
     cursor: pointer;
-    /* Long "name · MAC · addresses · status" labels shouldn't force layout overflow. */
     max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
     text-overflow: ellipsis;
 }
 
